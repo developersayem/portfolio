@@ -96,7 +96,7 @@ const HeroSection = () => {
             className="flex flex-wrap justify-center gap-4 mb-12"
           >
             <a
-              href="#contact"
+              href="/contact"
               className="group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-primary text-primary-foreground font-bold text-sm glow-green hover:-translate-y-1 transition-all duration-300"
             >
               Get in Touch
