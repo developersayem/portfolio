@@ -4,6 +4,7 @@ import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import { StarDecor, DotGrid, RingDecor } from "./ParallaxLayer";
 
 const CTASection = () => {
   const ref = useRef(null);
@@ -16,12 +17,30 @@ const CTASection = () => {
 
   return (
     <section className="py-32 relative overflow-hidden" ref={ref}>
-      {/* Parallax background */}
+      {/* Parallax elements */}
       <motion.div
         style={{ y: bgY }}
         className="absolute inset-0 pointer-events-none"
       >
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-primary/5 blur-[150px]" />
+        <RingDecor size={600} className="absolute -left-40 top-0 opacity-10" />
+        <RingDecor
+          size={400}
+          className="absolute -right-20 bottom-0 opacity-10"
+        />
+        <StarDecor
+          size={50}
+          className="absolute left-16 top-20 opacity-20 text-primary"
+        />
+        <StarDecor
+          size={30}
+          className="absolute right-20 bottom-32 opacity-20 text-primary"
+        />
+        <DotGrid
+          cols={15}
+          rows={3}
+          className="absolute left-1/2 -translate-x-1/2 top-10 opacity-15"
+        />
       </motion.div>
 
       <div className="container mx-auto px-6 relative">

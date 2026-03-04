@@ -3,6 +3,7 @@
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { ArrowUpRight, Calendar } from "lucide-react";
+import { StarDecor, DotGrid, RingDecor } from "./ParallaxLayer";
 
 const posts = [
   {
@@ -39,12 +40,22 @@ const BlogSection = () => {
       className="py-24 border-t border-border relative overflow-hidden"
       ref={ref}
     >
-      {/* Parallax glow */}
+      {/* Parallax elements */}
       <motion.div
         style={{ y: bgY }}
         className="absolute inset-0 pointer-events-none"
       >
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full bg-primary/5 blur-[140px]" />
+        <RingDecor size={450} className="absolute -right-20 top-0 opacity-15" />
+        <StarDecor
+          size={35}
+          className="absolute left-10 top-1/2 -translate-y-1/2 opacity-20 text-primary"
+        />
+        <DotGrid
+          cols={6}
+          rows={4}
+          className="absolute right-10 bottom-10 opacity-20"
+        />
       </motion.div>
 
       <div className="container mx-auto px-6 relative">

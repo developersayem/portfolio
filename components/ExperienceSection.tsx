@@ -58,9 +58,21 @@ const ExperienceSection = () => {
       {/* Background Decor */}
       <motion.div
         style={{ y: slowY }}
-        className="absolute -right-20 top-40 opacity-20 pointer-events-none"
+        className="absolute -right-20 top-40 opacity-40 pointer-events-none"
       >
         <RingDecor size={350} />
+      </motion.div>
+      <motion.div
+        style={{ y: slowY }}
+        className="absolute left-1/2 -translate-x-1/2 top-4 opacity-10 pointer-events-none"
+      >
+        <DotGrid cols={12} rows={3} />
+      </motion.div>
+      <motion.div
+        style={{ y: fastY }}
+        className="absolute -left-20 top-1/2 -translate-y-1/2 opacity-30 pointer-events-none"
+      >
+        <RingDecor size={500} />
       </motion.div>
       <motion.div
         style={{ y: fastY }}

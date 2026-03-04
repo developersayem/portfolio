@@ -2,6 +2,7 @@
 
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { StarDecor, DotGrid, RingDecor } from "./ParallaxLayer";
 
 const projects = [
   {
@@ -32,12 +33,26 @@ const ProjectsSection = () => {
 
   return (
     <section id="projects" className="py-24 relative overflow-hidden" ref={ref}>
-      {/* Parallax glow */}
+      {/* Parallax elements */}
       <motion.div
         style={{ y: bgY }}
         className="absolute inset-0 pointer-events-none"
       >
         <div className="absolute bottom-0 left-1/3 w-[600px] h-[500px] rounded-full bg-primary/6 blur-[150px]" />
+        <RingDecor size={400} className="absolute -left-20 top-20 opacity-20" />
+        <RingDecor
+          size={600}
+          className="absolute -right-40 top-1/2 -translate-y-1/2 opacity-15"
+        />
+        <StarDecor
+          size={50}
+          className="absolute right-10 top-40 opacity-20 text-primary"
+        />
+        <DotGrid
+          cols={8}
+          rows={4}
+          className="absolute left-10 bottom-20 opacity-20"
+        />
       </motion.div>
 
       <div className="container mx-auto px-6 relative">

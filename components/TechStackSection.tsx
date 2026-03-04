@@ -24,7 +24,9 @@ import {
   SiDrizzle,
   SiReactquery,
   SiShadcnui,
+  SiFigma,
 } from "react-icons/si";
+import { GiBearHead } from "react-icons/gi";
 import { TbDeviceMobile, TbApi } from "react-icons/tb";
 import { LuLayers, LuLayoutGrid, LuServer } from "react-icons/lu";
 import { StarDecor, DotGrid, RingDecor } from "./ParallaxLayer";
@@ -68,7 +70,8 @@ const skillsData = [
       { name: "JWT", icon: SiJsonwebtokens, color: "#000000" },
       { name: "Zod", icon: SiZod, color: "#3E67B1" },
       { name: "Firebase", icon: SiFirebase, color: "#FFCA28" },
-      { name: "GHL", icon: LuLayers, color: "#10B981" },
+      { name: "Figma", icon: SiFigma, color: "#FF6C37" },
+      { name: "Zustand", icon: GiBearHead, color: "#ffffff" },
     ],
   },
 ];
@@ -102,6 +105,18 @@ const TechStackSection = () => {
         className="absolute right-10 bottom-20 opacity-10 pointer-events-none text-primary"
       >
         <StarDecor size={60} />
+      </motion.div>
+      <motion.div
+        style={{ y: slowY }}
+        className="absolute -right-40 top-1/2 -translate-y-1/2 opacity-15 pointer-events-none"
+      >
+        <RingDecor size={600} />
+      </motion.div>
+      <motion.div
+        style={{ y: fastY }}
+        className="absolute left-1/4 top-40 opacity-20 pointer-events-none text-primary"
+      >
+        <StarDecor size={32} />
       </motion.div>
       <motion.div
         style={{ y: slowY }}

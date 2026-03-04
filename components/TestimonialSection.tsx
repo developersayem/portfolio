@@ -3,6 +3,7 @@
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { Star } from "lucide-react";
+import { StarDecor, DotGrid, RingDecor } from "./ParallaxLayer";
 
 const testimonials = [
   {
@@ -39,12 +40,30 @@ const TestimonialSection = () => {
       className="py-24 border-t border-border relative overflow-hidden"
       ref={ref}
     >
-      {/* Parallax glow */}
+      {/* Parallax elements */}
       <motion.div
         style={{ y: bgY }}
         className="absolute inset-0 pointer-events-none"
       >
         <div className="absolute top-1/2 right-0 w-[500px] h-[500px] rounded-full bg-primary/5 blur-[130px] -translate-y-1/2 translate-x-1/4" />
+        <RingDecor
+          size={500}
+          className="absolute -left-20 top-1/2 -translate-y-1/2 opacity-10"
+        />
+        <StarDecor
+          size={40}
+          className="absolute left-1/4 top-20 opacity-15 text-primary"
+        />
+        <DotGrid
+          cols={10}
+          rows={2}
+          className="absolute left-10 top-4 opacity-20"
+        />
+        <DotGrid
+          cols={10}
+          rows={2}
+          className="absolute right-10 bottom-4 opacity-20"
+        />
       </motion.div>
 
       <div className="container mx-auto px-6 relative">
