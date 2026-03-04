@@ -12,8 +12,12 @@ import TestimonialSection from "@/components/TestimonialSection";
 import BlogSection from "@/components/BlogSection";
 import CTASection from "@/components/CTASection";
 import FooterSection from "@/components/FooterSection";
+import { getBlogs } from "@/lib/actions/blog-actions";
+import { getProjects } from "@/lib/actions/project-actions";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const [blogs, projects] = await Promise.all([getBlogs(), getProjects()]);
+
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <CustomCursor />
@@ -25,9 +29,9 @@ export default function HomePage() {
       <SkillsMarquee />
       <TechStackSection />
       <ExperienceSection />
-      <ProjectsSection />
+      <ProjectsSection projects={projects} />
       <TestimonialSection />
-      <BlogSection />
+      <BlogSection posts={blogs} />
       <CTASection />
       <FooterSection />
     </div>

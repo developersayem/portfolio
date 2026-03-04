@@ -1,0 +1,44 @@
+
+> bespoke-bloom-site@0.1.0 build
+> next build
+
+   ▲ Next.js 15.1.9
+   - Environments: .env.local
+
+   Creating an optimized production build ...
+Browserslist: browsers data (caniuse-lite) is 9 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/13) ...
+   Generating static pages (3/13) 
+   Generating static pages (6/13) 
+   Generating static pages (9/13) 
+ ✓ Generating static pages (13/13)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                              Size     First Load JS
+┌ ○ /                                    25.6 kB         190 kB
+├ ○ /_not-found                          143 B           107 kB
+├ ○ /admin                               143 B           107 kB
+├ ○ /admin/blogs                         2.17 kB         119 kB
+├ ○ /admin/blogs/new                     3.9 kB          117 kB
+├ ○ /admin/contacts                      2.15 kB         115 kB
+├ ○ /admin/projects                      2.17 kB         119 kB
+├ ○ /admin/projects/new                  2.77 kB         116 kB
+├ ○ /blogs                               2.8 kB          168 kB
+├ ƒ /blogs/[slug]                        196 B           158 kB
+├ ○ /contact                             6.25 kB         171 kB
+└ ○ /icon.png                            0 B                0 B
++ First Load JS shared by all            106 kB
+  ├ chunks/4bd1b696-81ed7fe6fbf16761.js  53 kB
+  ├ chunks/517-738b84aec89dda83.js       50.8 kB
+  └ other shared chunks (total)          2.75 kB
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

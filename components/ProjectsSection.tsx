@@ -4,25 +4,16 @@ import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { StarDecor, DotGrid, RingDecor } from "./ParallaxLayer";
 
-const projects = [
-  {
-    title: "E-Commerce Platform",
-    desc: "Full-stack e-commerce solution with payment integration, admin dashboard, and real-time inventory management.",
-    tags: ["React", "Node.js", "Stripe", "PostgreSQL"],
-  },
-  {
-    title: "SaaS Analytics Dashboard",
-    desc: "Real-time analytics dashboard with interactive charts, user segmentation, and automated reporting.",
-    tags: ["Next.js", "TypeScript", "D3.js", "AWS"],
-  },
-  {
-    title: "AI Content Generator",
-    desc: "AI-powered content creation tool with natural language processing and multi-language support.",
-    tags: ["Python", "React", "OpenAI", "Docker"],
-  },
-];
+interface Project {
+  _id: string;
+  title: string;
+  description: string;
+  techStack: string[];
+  githubUrl?: string;
+  liveUrl?: string;
+}
 
-const ProjectsSection = () => {
+const ProjectsSection = ({ projects }: { projects: Project[] }) => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
   const { scrollYProgress } = useScroll({
@@ -108,10 +99,10 @@ const ProjectsSection = () => {
               </div>
               <h3 className="font-display text-xl font-bold mb-3">{p.title}</h3>
               <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-                {p.desc}
+                {p.description}
               </p>
-              <div className="flex flex-wrap gap-2">
-                {p.tags.map((tag) => (
+              <div className="flex flex-wrap gap-2 mb-4">
+                {p.techStack.map((tag) => (
                   <span
                     key={tag}
                     className="text-xs px-3 py-1 rounded-full bg-secondary text-muted-foreground"
@@ -119,6 +110,48 @@ const ProjectsSection = () => {
                     {tag}
                   </span>
                 ))}
+              </div>
+              <div className="flex gap-4">
+                {p.githubUrl && (
+                  <a
+                    href={p.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                    </svg>
+                  </a>
+                )}
+                {p.liveUrl && (
+                  <a
+                    href={p.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                      <polyline points="15 3 21 3 21 9" />
+                      <line x1="10" y1="14" x2="21" y2="3" />
+                    </svg>
+                  </a>
+                )}
               </div>
             </motion.div>
           ))}

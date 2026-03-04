@@ -5,28 +5,15 @@ import { useRef } from "react";
 import { ArrowUpRight, Calendar } from "lucide-react";
 import { StarDecor, DotGrid, RingDecor } from "./ParallaxLayer";
 
-const posts = [
-  {
-    date: "Feb 15, 2026",
-    category: "Engineering",
-    title: "Building Scalable Microservices with Node.js and Docker",
-    desc: "A deep dive into designing microservice architectures that scale horizontally, with practical patterns for service discovery and load balancing.",
-  },
-  {
-    date: "Jan 28, 2026",
-    category: "Frontend",
-    title: "Advanced React Patterns Every Developer Should Know",
-    desc: "Exploring compound components, render props, and custom hooks to create flexible and reusable UI components.",
-  },
-  {
-    date: "Jan 10, 2026",
-    category: "Startup",
-    title: "Lessons Learned Co-Founding a Tech Startup",
-    desc: "From ideation to first paying customers — the real challenges of building a tech company and how we overcame them.",
-  },
-];
+interface Post {
+  _id: string;
+  date: string;
+  category: string;
+  title: string;
+  excerpt: string;
+}
 
-const BlogSection = () => {
+const BlogSection = ({ posts }: { posts: Post[] }) => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const { scrollYProgress } = useScroll({
@@ -108,7 +95,7 @@ const BlogSection = () => {
                   {post.title}
                 </h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">
-                  {post.desc}
+                  {post.excerpt}
                 </p>
               </div>
             </motion.article>

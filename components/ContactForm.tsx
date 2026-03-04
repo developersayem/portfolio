@@ -8,6 +8,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 
+import { submitContactForm } from "@/lib/actions/contact-actions";
+
 const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -18,10 +20,15 @@ const ContactForm = () => {
     setIsSubmitting(true);
     setError(null);
 
-    // Simulate API call
+    const formData = new FormData(e.currentTarget);
+
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      setIsSuccess(true);
+      const result = await submitContactForm(formData);
+      if (result.success) {
+        setIsSuccess(true);
+      } else {
+        setError(result.error || "Something went wrong.");
+      }
     } catch (err) {
       setError("Something went wrong. Please try again later.");
     } finally {
@@ -72,6 +79,7 @@ const ContactForm = () => {
             </Label>
             <Input
               id="name"
+              name="name"
               placeholder="John Doe"
               required
               className="rounded-full bg-background/50 border-border/50 focus:border-primary/50 transition-all duration-300 h-12 px-6"
@@ -83,6 +91,7 @@ const ContactForm = () => {
             </Label>
             <Input
               id="phone"
+              name="phone"
               type="tel"
               placeholder="+8801XXXXXXXXX"
               className="rounded-full bg-background/50 border-border/50 focus:border-primary/50 transition-all duration-300 h-12 w-full px-6"
@@ -95,6 +104,7 @@ const ContactForm = () => {
           </Label>
           <Input
             id="email"
+            name="email"
             type="email"
             placeholder="john@example.com"
             required
@@ -108,6 +118,7 @@ const ContactForm = () => {
           </Label>
           <Input
             id="subject"
+            name="subject"
             placeholder="Project Inquiry"
             required
             className="rounded-full bg-background/50 border-border/50 focus:border-primary/50 transition-all duration-300 h-12 px-6"
@@ -120,6 +131,7 @@ const ContactForm = () => {
           </Label>
           <Textarea
             id="message"
+            name="message"
             placeholder="Tell me about your project..."
             required
             className="rounded-[2rem] bg-background/50 border-border/50 focus:border-primary/50 transition-all duration-300 min-h-[150px] resize-none px-6 py-4"
