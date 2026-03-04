@@ -15,7 +15,7 @@ const FooterSection = () => {
   return (
     <footer
       id="contact"
-      className="py-20 border-t border-border relative overflow-hidden"
+      className="border-t border-border relative overflow-hidden"
       ref={ref}
     >
       {/* Parallax glow */}
@@ -26,8 +26,8 @@ const FooterSection = () => {
         <div className="absolute bottom-0 left-1/4 w-[500px] h-[400px] rounded-full bg-primary/5 blur-[130px]" />
       </motion.div>
 
-      <div className="container mx-auto px-6 relative">
-        <div className="grid md:grid-cols-4 gap-12 mb-16">
+      <div className="pt-10 container mx-auto px-6 relative">
+        <div className="grid md:grid-cols-4 gap-12 mb-10">
           <div>
             <h3 className="font-display text-xl font-bold mb-4">
               <span className="text-gradient">Sayem</span> Molla
@@ -43,10 +43,11 @@ const FooterSection = () => {
             <h4 className="font-display font-semibold mb-4">Contact</h4>
             <div className="space-y-3 text-sm text-muted-foreground">
               <p className="flex items-center gap-2">
-                <Phone size={14} className="text-primary" /> +880 1755 202096
+                <Phone size={14} className="text-primary" /> +880 1704878051
               </p>
               <p className="flex items-center gap-2">
-                <Mail size={14} className="text-primary" /> contact@softxet.com
+                <Mail size={14} className="text-primary" />{" "}
+                developersayem012@gmail.com
               </p>
               <p className="flex items-center gap-2">
                 <MapPin size={14} className="text-primary" /> Dhaka, Bangladesh
@@ -110,6 +111,34 @@ const FooterSection = () => {
               Privacy Policy
             </a>
           </div>
+        </div>
+      </div>
+
+      {/* Large Bottom Marquee */}
+      <div className="mt-0 border-t border-border/50 overflow-hidden relative group -bottom-10">
+        <div
+          className="animate-marquee flex flex-nowrap w-max will-change-transform"
+          style={{ animationDuration: "50s" }}
+        >
+          {Array.from({ length: 8 }).map((_, i) => (
+            <div
+              key={i}
+              className="flex items-center flex-shrink-0 gap-10 mx-10"
+            >
+              <span className="font-display text-[8vw] font-black text-foreground/[0.04] group-hover:text-primary/20 transition-colors duration-700 select-none uppercase tracking-tighter whitespace-nowrap">
+                SAYEM MOLLA - FULL STACK DEVELOPER
+              </span>
+              <svg
+                width="40"
+                height="40"
+                viewBox="0 0 32 32"
+                className="text-primary/20 group-hover:text-primary transition-colors duration-700 flex-shrink-0"
+                fill="currentColor"
+              >
+                <path d="M16 0L18.5 13.5L32 16L18.5 18.5L16 32L13.5 18.5L0 16L13.5 13.5Z" />
+              </svg>
+            </div>
+          ))}
         </div>
       </div>
     </footer>
