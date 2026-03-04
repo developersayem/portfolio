@@ -3,6 +3,7 @@
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { StarDecor, DotGrid, RingDecor } from "./ParallaxLayer";
+import { ExperienceBadge } from "./experienceBadge";
 const portraitImg = "/sayem-portrait.jpg";
 
 const AboutSection = () => {
@@ -57,13 +58,17 @@ const AboutSection = () => {
                 className="w-full h-[500px] object-cover"
               />
             </div>
-            <div className="absolute -bottom-6 -right-6 bg-card border border-border rounded-full p-6 glow-green">
-              <span className="text-center text-7xl font-display font-bold text-primary">
-                3+
-              </span>
-              <p className="text-sm text-muted-foreground">
-                Years of Excellence
-              </p>
+            <div className="absolute -bottom-6 -right-6 bg-card border border-border rounded-full p-4 glow-green flex flex-col items-center">
+              <ExperienceBadge
+                text="YEARS EXPERIENCE • FULL STACK DEVELOPER • "
+                radius={80}
+                duration={15}
+                center={
+                  <div className="w-24 h-24 rounded-full bg-black text-primary flex items-center justify-center text-6xl font-bold">
+                    3+
+                  </div>
+                }
+              />
             </div>
           </motion.div>
 
