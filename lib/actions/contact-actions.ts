@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import dbConnect from "@/lib/db";
 import Contact from "@/models/Contact";
+import { sendMail } from "@/lib/mail";
 
 export async function submitContactForm(formData: FormData) {
   await dbConnect();
@@ -23,6 +24,30 @@ export async function submitContactForm(formData: FormData) {
     });
 
     await newContact.save();
+
+    // Send email notification
+    if (process.env.NOTIFY_EMAIL) {
+      await sendMail({
+        to: process.env.NOTIFY_EMAIL,
+        subject: `New Contact Message: ${subject}`,
+        html: `
+          <div style="font-family: sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
+            <h2 style="color: #10b981;">New Message Received</h2>
+            <p><strong>From:</strong> ${name} (${email})</p>
+            <p><strong>Phone:</strong> ${phone || "N/A"}</p>
+            <p><strong>Subject:</strong> ${subject}</p>
+            <div style="margin-top: 20px; padding: 15px; background: #f9f9f9; border-radius: 5px;">
+              <p><strong>Message:</strong></p>
+              <p style="white-space: pre-wrap;">${message}</p>
+            </div>
+            <p style="margin-top: 20px; font-size: 12px; color: #666;">
+              Sent from your portfolio website dashboard.
+            </p>
+          </div>
+        `,
+      });
+    }
+
     revalidatePath("/admin/contacts");
     return { success: true };
   } catch (error) {
