@@ -31,38 +31,42 @@ export default async function AdminProjectsPage() {
           </Card>
         ) : (
           projects.map((project: any) => (
-            <Card key={project._id}>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <div
+              key={project._id}
+              className="p-5 flex items-center justify-between bg-card rounded-lg"
+            >
+              <div className="flex flex-col items-start space-y-2">
                 <CardTitle className="text-lg font-bold">
                   {project.title}
                 </CardTitle>
-                <div className="flex items-center gap-2 relative z-10">
-                  <Button
-                    variant="outline"
-                    className="rounded-full"
-                    size="icon"
-                    asChild
-                  >
-                    <Link href={`/admin/projects/${project._id}/edit`}>
-                      <Pencil className="h-4 w-4" />
-                    </Link>
-                  </Button>
-                  <DeleteProjectButton id={project._id} />
+                <div>
+                  <div className="flex flex-wrap gap-2 text-sm text-muted-foreground">
+                    {project.techStack.map((tech: string) => (
+                      <span
+                        key={tech}
+                        className="bg-secondary px-2 py-0.5 rounded text-xs"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-2 text-sm text-muted-foreground">
-                  {project.techStack.map((tech: string) => (
-                    <span
-                      key={tech}
-                      className="bg-secondary px-2 py-0.5 rounded text-xs"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+              </div>
+
+              <div className="flex items-center gap-2 relative z-10">
+                <Button
+                  variant="outline"
+                  className="rounded-full"
+                  size="icon"
+                  asChild
+                >
+                  <Link href={`/admin/projects/${project._id}/edit`}>
+                    <Pencil className="h-4 w-4" />
+                  </Link>
+                </Button>
+                <DeleteProjectButton id={project._id} />
+              </div>
+            </div>
           ))
         )}
       </div>
