@@ -8,6 +8,7 @@ import {
   FolderKanban,
   Settings,
   LogOut,
+  Users,
 } from "lucide-react";
 
 import {
@@ -47,6 +48,11 @@ const data = {
       title: "Messages",
       url: "/admin/contacts",
       icon: MessageSquare,
+    },
+    {
+      title: "Subscribers",
+      url: "/admin/subscribers",
+      icon: Users,
     },
   ],
 };
