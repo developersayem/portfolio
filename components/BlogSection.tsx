@@ -8,10 +8,12 @@ import Link from "next/link";
 
 interface Post {
   _id: string;
+  slug: string;
   date: string;
   category: string;
   title: string;
   excerpt: string;
+  image?: string;
 }
 
 const BlogSection = ({ posts }: { posts: Post[] }) => {
@@ -78,27 +80,40 @@ const BlogSection = ({ posts }: { posts: Post[] }) => {
               transition={{ duration: 0.6, delay: i * 0.15 }}
               className="group bg-card border border-border rounded-2xl overflow-hidden hover:border-primary/40 transition-all duration-500"
             >
-              <div className="h-48 bg-secondary/50 flex items-center justify-center">
-                <span className="text-6xl font-display font-extrabold text-foreground/5 group-hover:text-primary/10 transition-colors duration-500">
-                  0{i + 1}
-                </span>
-              </div>
-              <div className="p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="text-xs px-3 py-1 rounded-full bg-primary/10 text-primary font-medium">
-                    {post.category}
-                  </span>
-                  <span className="flex items-center gap-1 text-xs text-muted-foreground">
-                    <Calendar size={12} /> {post.date}
-                  </span>
+              <Link href={`/blogs/${post.slug}`} className="block">
+                <div className="h-56 bg-secondary/30 relative overflow-hidden border-b border-border/50">
+                  {post.image ? (
+                    <img
+                      src={post.image}
+                      alt={post.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center">
+                      <span className="text-6xl font-display font-extrabold text-foreground/5 group-hover:text-primary/10 transition-colors duration-500">
+                        0{i + 1}
+                      </span>
+                    </div>
+                  )}
+                  <div className="absolute top-4 left-4">
+                    <span className="text-[10px] uppercase tracking-wider font-bold px-3 py-1 rounded-full bg-primary/20 text-primary backdrop-blur-md border border-primary/20">
+                      {post.category}
+                    </span>
+                  </div>
                 </div>
-                <h3 className="font-display text-lg font-bold mb-2 group-hover:text-primary transition-colors">
-                  {post.title}
-                </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  {post.excerpt}
-                </p>
-              </div>
+                <div className="p-6">
+                  <div className="flex items-center gap-1 text-[10px] text-muted-foreground uppercase tracking-widest mb-3">
+                    <Calendar size={12} className="text-primary/60" />{" "}
+                    {post.date}
+                  </div>
+                  <h3 className="font-display text-xl font-bold mb-3 group-hover:text-primary transition-colors line-clamp-2">
+                    {post.title}
+                  </h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">
+                    {post.excerpt}
+                  </p>
+                </div>
+              </Link>
             </motion.article>
           ))}
         </div>

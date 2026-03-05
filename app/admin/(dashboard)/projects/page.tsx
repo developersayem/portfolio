@@ -1,8 +1,9 @@
 import { getProjects } from "@/lib/actions/project-actions";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Plus, Trash2 } from "lucide-react";
+import { Plus, Pencil } from "lucide-react";
 import Link from "next/link";
+import { DeleteProjectButton } from "@/components/admin/DeleteProjectButton";
 
 export default async function AdminProjectsPage() {
   const projects = await getProjects();
@@ -11,9 +12,10 @@ export default async function AdminProjectsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h2 className="text-2xl font-bold">Manage Projects</h2>
-        <Button asChild>
+        <Button asChild className="rounded-full [&_svg]:size-5">
           <Link href="/admin/projects/new">
-            <Plus className="mr-2 h-4 w-4" /> Add Project
+            <Plus />
+            <span className="font-extrabold">Add Project</span>
           </Link>
         </Button>
       </div>
@@ -34,10 +36,18 @@ export default async function AdminProjectsPage() {
                 <CardTitle className="text-lg font-bold">
                   {project.title}
                 </CardTitle>
-                <div className="flex items-center gap-2">
-                  <Button variant="destructive" size="icon">
-                    <Trash2 className="h-4 w-4" />
+                <div className="flex items-center gap-2 relative z-10">
+                  <Button
+                    variant="outline"
+                    className="rounded-full"
+                    size="icon"
+                    asChild
+                  >
+                    <Link href={`/admin/projects/${project._id}/edit`}>
+                      <Pencil className="h-4 w-4" />
+                    </Link>
                   </Button>
+                  <DeleteProjectButton id={project._id} />
                 </div>
               </CardHeader>
               <CardContent>

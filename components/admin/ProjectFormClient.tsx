@@ -10,25 +10,27 @@ import { Label } from "@/components/ui/label";
 import { AdminBlogEditor } from "@/components/AdminBlogEditor";
 import { useToast } from "@/components/ui/use-toast";
 
-interface BlogFormClientProps {
+interface ProjectFormClientProps {
   initialData?: {
     title: string;
-    category: string;
-    image: string;
-    excerpt: string;
-    content: string;
+    shortDescription: string;
+    description: string;
+    techStack: string[];
+    githubUrl?: string;
+    liveUrl?: string;
+    image?: string;
   };
   formTitle: string;
   submitText: string;
   action: (formData: FormData) => Promise<{ success: boolean; error?: string }>;
 }
 
-export function BlogFormClient({
+export function ProjectFormClient({
   initialData,
   formTitle,
   submitText,
   action,
-}: BlogFormClientProps) {
+}: ProjectFormClientProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
   const { toast } = useToast();
@@ -44,13 +46,13 @@ export function BlogFormClient({
       if (result.success) {
         toast({
           title: "Success",
-          description: `Blog post successfully ${initialData ? "updated" : "created"}!`,
+          description: `Project successfully ${initialData ? "updated" : "created"}!`,
         });
-        router.push("/admin/blogs");
+        router.push("/admin/projects");
       } else {
         toast({
           title: "Error",
-          description: result.error || "Failed to save blog post.",
+          description: result.error || "Failed to save project.",
           variant: "destructive",
         });
       }
@@ -66,7 +68,7 @@ export function BlogFormClient({
   }
 
   return (
-    <Card className="min-h-screen flex flex-col border-0 shadow-none sm:border sm:shadow-sm">
+    <Card className="min-h-[calc(100vh-theme(spacing.24))] flex flex-col border-0 shadow-none sm:border sm:shadow-sm">
       <form onSubmit={handleSubmit} className="flex flex-col">
         {initialData && (
           <input
@@ -82,7 +84,7 @@ export function BlogFormClient({
             <Button
               variant="outline"
               type="button"
-              onClick={() => router.push("/admin/blogs")}
+              onClick={() => router.push("/admin/projects")}
               disabled={isSubmitting}
             >
               Cancel
@@ -96,28 +98,48 @@ export function BlogFormClient({
           <div className="grid md:grid-cols-2 gap-4">
             <div className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="title">Title</Label>
+                <Label htmlFor="title">Project Title</Label>
                 <Input
                   id="title"
                   name="title"
-                  placeholder="Blog post title"
+                  placeholder="Project name"
                   defaultValue={initialData?.title}
                   required
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="category">Category</Label>
+                <Label htmlFor="techStack">Tech Stack (comma separated)</Label>
                 <Input
-                  id="category"
-                  name="category"
-                  placeholder="e.g. Engineering, Frontend"
-                  defaultValue={initialData?.category}
+                  id="techStack"
+                  name="techStack"
+                  placeholder="React, Next.js, tailwind, etc."
+                  defaultValue={initialData?.techStack?.join(", ")}
                   required
                 />
               </div>
+              <div className="flex gap-4">
+                <div className="flex-1 space-y-2">
+                  <Label htmlFor="githubUrl">GitHub URL</Label>
+                  <Input
+                    id="githubUrl"
+                    name="githubUrl"
+                    placeholder="https://github.com/..."
+                    defaultValue={initialData?.githubUrl}
+                  />
+                </div>
+                <div className="flex-1 space-y-2">
+                  <Label htmlFor="liveUrl">Live URL</Label>
+                  <Input
+                    id="liveUrl"
+                    name="liveUrl"
+                    placeholder="https://..."
+                    defaultValue={initialData?.liveUrl}
+                  />
+                </div>
+              </div>
               <div className="space-y-2">
                 <Label htmlFor="image">
-                  Blog Cover Image {initialData && "(Optional)"}
+                  Project Image {initialData && "(Optional)"}
                 </Label>
                 {initialData && (
                   <div className="text-xs text-muted-foreground mb-1">
@@ -129,7 +151,7 @@ export function BlogFormClient({
                   <div className="mb-2 rounded overflow-hidden border border-border w-24 h-16 relative">
                     <img
                       src={initialData.image}
-                      alt="Current cover"
+                      alt="Current image"
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -140,29 +162,34 @@ export function BlogFormClient({
                   type="file"
                   accept="image/*"
                   className="cursor-pointer file:cursor-pointer"
-                  required={!initialData}
                 />
               </div>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="excerpt">Excerpt</Label>
+              <Label htmlFor="shortDescription">
+                Short Description (Excerpt)
+              </Label>
               <Textarea
-                id="excerpt"
-                name="excerpt"
+                id="shortDescription"
+                name="shortDescription"
                 className="h-full min-h-[108px] resize-none"
-                placeholder="Short description for the listing"
-                defaultValue={initialData?.excerpt}
+                placeholder="Short description for the project card"
+                defaultValue={initialData?.shortDescription}
                 required
               />
             </div>
           </div>
 
           <div className="space-y-2 flex flex-col pb-2">
-            <Label>Content</Label>
+            <Label>Full Description</Label>
+            <p className="text-xs text-muted-foreground">
+              You can use Markdown here to add formatting, multiple links, or
+              images.
+            </p>
             <div className="border rounded-md">
               <AdminBlogEditor
-                name="content"
-                initialValue={initialData?.content || ""}
+                name="description"
+                initialValue={initialData?.description || ""}
               />
             </div>
           </div>

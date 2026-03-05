@@ -73,8 +73,8 @@ export default function GravityMarkdownEditor({
     <ThemeProvider theme="dark">
       <ToasterProvider toaster={toaster}>
         <div
-          className="gravity-editor-wrapper h-full w-full flex flex-col [&_.g-md-editor]:h-full [&_.g-md-editor]:w-full"
-          style={{ color: "initial" }}
+          className="gravity-editor-wrapper w-full flex flex-col"
+          style={{ color: "initial", minHeight: "400px" }}
         >
           <MarkdownEditorView editor={editor} stickyToolbar autofocus />
         </div>
