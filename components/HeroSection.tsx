@@ -1,13 +1,7 @@
 "use client";
 
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import {
-  ArrowUpRight,
-  Download,
-  Github,
-  Linkedin,
-  Facebook,
-} from "lucide-react";
+import { ArrowUpRight, Github, Linkedin, Facebook } from "lucide-react";
 
 const XIcon = ({ size = 18 }: { size?: number }) => (
   <svg
@@ -116,13 +110,6 @@ const HeroSection = () => {
                 size={16}
                 className="group-hover:rotate-45 transition-transform duration-300"
               />
-            </a>
-            <a
-              href="#projects"
-              className="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-border text-foreground font-bold text-sm hover:border-primary/40 hover:bg-primary/5 transition-all duration-300"
-            >
-              <Download size={16} />
-              Download CV
             </a>
           </motion.div>
 
