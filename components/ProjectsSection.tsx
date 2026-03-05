@@ -97,87 +97,91 @@ const ProjectsSection = ({ projects }: { projects: Project[] }) => {
               initial={{ opacity: 0, y: 40 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: i * 0.15 }}
-              className="group bg-card border border-border rounded-2xl overflow-hidden hover:border-primary/40 transition-all duration-500 hover:glow-green"
+              className="group bg-card border border-border rounded-2xl overflow-hidden hover:border-primary/40 transition-all duration-500 hover:glow-primary relative"
             >
+              {/* Overlay Link for the entire card */}
               <Link
                 href={`/projects/${p.slug}`}
-                className="block block-content"
-              >
-                {p.image && (
-                  <div className="w-full h-56 overflow-hidden bg-muted/20 border-b border-border/50">
-                    <img
-                      src={p.image}
-                      alt={p.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                )}
+                className="absolute inset-0 z-0"
+                aria-label={`View ${p.title}`}
+              />
 
-                <div className="p-6">
-                  <h3 className="font-display text-xl font-bold mb-3 group-hover:text-primary transition-colors">
-                    {p.title}
-                  </h3>
-                  {p.shortDescription && (
-                    <p className="text-muted-foreground text-sm leading-relaxed mb-6 line-clamp-2">
-                      {p.shortDescription}
-                    </p>
-                  )}
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {p.techStack.map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-[10px] uppercase tracking-wider font-bold px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex gap-4 justify-end">
-                    {p.githubUrl && (
-                      <a
-                        href={p.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-primary transition-colors z-10 relative"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <svg
-                          width="16"
-                          height="16"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                        >
-                          <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                        </svg>
-                      </a>
-                    )}
-                    {p.liveUrl && (
-                      <a
-                        href={p.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-primary transition-colors z-10 relative"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <svg
-                          width="16"
-                          height="16"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                        >
-                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                          <polyline points="15 3 21 3 21 9" />
-                          <line x1="10" y1="14" x2="21" y2="3" />
-                        </svg>
-                      </a>
-                    )}
-                  </div>
+              {/* Card Thumbnail */}
+              {p.image && (
+                <div className="w-full h-56 overflow-hidden bg-muted/20 border-b border-border/50 relative z-0">
+                  <img
+                    src={p.image}
+                    alt={p.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
                 </div>
-              </Link>
+              )}
+
+              {/* Card Info */}
+              <div className="p-6 relative z-0 pointer-events-none">
+                <h3 className="font-display text-xl font-bold mb-3 group-hover:text-primary transition-colors">
+                  {p.title}
+                </h3>
+                {p.shortDescription && (
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-6 line-clamp-2">
+                    {p.shortDescription}
+                  </p>
+                )}
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {p.techStack.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-[10px] uppercase tracking-wider font-bold px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Secondary Links (Actions) */}
+              <div className="px-6 pb-6 flex gap-4 justify-end relative z-10">
+                {p.githubUrl && (
+                  <a
+                    href={p.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                    </svg>
+                  </a>
+                )}
+                {p.liveUrl && (
+                  <a
+                    href={p.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                      <polyline points="15 3 21 3 21 9" />
+                      <line x1="10" y1="14" x2="21" y2="3" />
+                    </svg>
+                  </a>
+                )}
+              </div>
             </motion.div>
           ))}
         </div>

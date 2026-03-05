@@ -58,7 +58,7 @@ const AboutSection = () => {
                 className="w-full h-[500px] object-cover"
               />
             </div>
-            <div className="absolute -bottom-6 -right-6 bg-card border border-border rounded-full p-4 glow-green flex flex-col items-center">
+            <div className="absolute -bottom-6 -right-6 bg-card border border-border rounded-full p-4 glow-primary flex flex-col items-center">
               <ExperienceBadge
                 text="YEARS EXPERIENCE • FULL STACK DEVELOPER • "
                 radius={80}

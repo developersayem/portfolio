@@ -152,7 +152,7 @@ const ContactForm = () => {
         <Button
           type="submit"
           disabled={isSubmitting}
-          className="w-full h-14 rounded-full bg-primary text-primary-foreground font-bold text-base glow-green hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-3"
+          className="w-full h-14 rounded-full bg-primary text-primary-foreground font-bold text-base glow-primary hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-3"
         >
           {isSubmitting ? (
             <>

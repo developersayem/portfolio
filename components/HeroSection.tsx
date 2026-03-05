@@ -41,7 +41,7 @@ const HeroSection = () => {
         className="absolute inset-0 pointer-events-none opacity-[0.03]"
         style={{
           backgroundImage:
-            "linear-gradient(hsl(75 85% 55% / 0.3) 1px, transparent 1px), linear-gradient(90deg, hsl(75 85% 55% / 0.3) 1px, transparent 1px)",
+            "linear-gradient(hsl(160 84% 39% / 0.3) 1px, transparent 1px), linear-gradient(90deg, hsl(160 84% 39% / 0.3) 1px, transparent 1px)",
           backgroundSize: "60px 60px",
         }}
       />
@@ -97,7 +97,7 @@ const HeroSection = () => {
           >
             <a
               href="/contact"
-              className="group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-primary text-primary-foreground font-bold text-sm glow-green hover:-translate-y-1 transition-all duration-300"
+              className="group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-primary text-primary-foreground font-bold text-sm glow-primary hover:-translate-y-1 transition-all duration-300"
             >
               Get in Touch
               <ArrowUpRight

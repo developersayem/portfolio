@@ -113,7 +113,7 @@ const ServicesSection = () => {
               initial={{ opacity: 0, y: 40 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group bg-card border border-border rounded-2xl p-8 hover:border-primary/40 transition-all duration-500 hover:glow-green relative overflow-hidden"
+              className="group bg-card border border-border rounded-2xl p-8 hover:border-primary/40 transition-all duration-500 hover:glow-primary relative overflow-hidden"
             >
               <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 group-hover:bg-primary/10 transition-colors duration-500" />
               <div className="relative">

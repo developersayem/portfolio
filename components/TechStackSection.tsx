@@ -151,7 +151,7 @@ const TechStackSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="group bg-card/40 backdrop-blur-sm border border-border rounded-3xl p-8 hover:border-primary/40 transition-all duration-500 hover:glow-green"
+              className="group bg-card/40 backdrop-blur-sm border border-border rounded-3xl p-8 hover:border-primary/40 transition-all duration-500 hover:glow-primary"
             >
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300">
