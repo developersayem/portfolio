@@ -9,7 +9,22 @@ import {
   Loader2,
   CheckCircle2,
   AlertCircle,
+  Github,
+  Linkedin,
+  Facebook,
 } from "lucide-react";
+
+const XIcon = ({ size = 14 }: { size?: number }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932L18.901 1.153zM17.61 20.644h2.039L6.486 3.24H4.298l13.312 17.403z" />
+  </svg>
+);
 import { subscribeToNewsletter } from "@/lib/actions/newsletter-actions";
 
 const FooterSection = () => {
@@ -170,6 +185,30 @@ const FooterSection = () => {
             <span className="text-primary">Sayem Molla</span>. All Rights
             Reserved.
           </p>
+          <div className="flex items-center gap-4">
+            {[
+              {
+                icon: Facebook,
+                href: "https://www.facebook.com/sayemmolla.dev/",
+              },
+              { icon: Github, href: "https://github.com/developersayem" },
+              {
+                icon: Linkedin,
+                href: "https://www.linkedin.com/in/sayem-molla/",
+              },
+              { icon: XIcon, href: "https://x.com/developersayem" },
+            ].map(({ icon: Icon, href }, i) => (
+              <a
+                key={i}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/40 hover:bg-primary/5 transition-all duration-300"
+              >
+                <Icon size={14} />
+              </a>
+            ))}
+          </div>
           <div className="flex gap-6 text-xs text-muted-foreground">
             <a href="#" className="hover:text-primary transition-colors">
               Terms of Use

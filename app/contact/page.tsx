@@ -1,7 +1,19 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Github, Linkedin, Twitter } from "lucide-react";
+import { Mail, Phone, MapPin, Github, Linkedin, Facebook } from "lucide-react";
+
+const XIcon = ({ size = 20 }: { size?: number }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932L18.901 1.153zM17.61 20.644h2.039L6.486 3.24H4.298l13.312 17.403z" />
+  </svg>
+);
 import Navbar from "@/components/Navbar";
 import FooterSection from "@/components/FooterSection";
 import ContactForm from "@/components/ContactForm";
@@ -105,13 +117,22 @@ const ContactPage = () => {
                   className="mt-16 flex gap-4"
                 >
                   {[
-                    { icon: Github, href: "#" },
-                    { icon: Linkedin, href: "#" },
-                    { icon: Twitter, href: "#" },
+                    {
+                      icon: Facebook,
+                      href: "https://www.facebook.com/sayemmolla.dev/",
+                    },
+                    { icon: Github, href: "https://github.com/developersayem" },
+                    {
+                      icon: Linkedin,
+                      href: "https://www.linkedin.com/in/sayem-molla/",
+                    },
+                    { icon: XIcon, href: "https://x.com/developersayem" },
                   ].map(({ icon: Icon, href }, i) => (
                     <a
                       key={i}
                       href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="w-12 h-12 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/40 hover:bg-primary/5 transition-all duration-300"
                     >
                       <Icon size={20} />
