@@ -6,18 +6,50 @@ import Navbar from "@/components/Navbar";
 import FooterSection from "@/components/FooterSection";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import type { Metadata } from "next";
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://sayemmolla.dev";
 
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ slug: string }>;
-}) {
+}): Promise<Metadata> {
   const resolvedParams = await params;
   const blog = await getBlogBySlug(resolvedParams.slug);
   if (!blog) return { title: "Not Found" };
+
+  const pageUrl = `${SITE_URL}/blogs/${resolvedParams.slug}`;
+  const imageUrl = blog.image?.startsWith("http")
+    ? blog.image
+    : blog.image
+      ? `${SITE_URL}${blog.image}`
+      : `${SITE_URL}/og-image.png`;
+
   return {
     title: `${blog.title} | Sayem Molla`,
     description: blog.excerpt,
+    alternates: {
+      canonical: pageUrl,
+    },
+    openGraph: {
+      type: "article",
+      title: blog.title,
+      description: blog.excerpt,
+      url: pageUrl,
+      siteName: "Sayem Molla",
+      images: [{ url: imageUrl, width: 1200, height: 630, alt: blog.title }],
+      publishedTime: blog.createdAt,
+      modifiedTime: blog.updatedAt,
+      tags: blog.category ? [blog.category] : [],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: blog.title,
+      description: blog.excerpt,
+      images: [imageUrl],
+      creator: "@sayemmolla",
+    },
   };
 }
 
@@ -33,8 +65,41 @@ export default async function BlogPostPage({
     notFound();
   }
 
+  const pageUrl = `${SITE_URL}/blogs/${resolvedParams.slug}`;
+  const imageUrl = blog.image?.startsWith("http")
+    ? blog.image
+    : blog.image
+      ? `${SITE_URL}${blog.image}`
+      : null;
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: blog.title,
+    description: blog.excerpt,
+    url: pageUrl,
+    datePublished: blog.createdAt,
+    dateModified: blog.updatedAt,
+    author: {
+      "@type": "Person",
+      name: "Sayem Molla",
+      url: SITE_URL,
+    },
+    publisher: {
+      "@type": "Person",
+      name: "Sayem Molla",
+      url: SITE_URL,
+    },
+    ...(imageUrl ? { image: imageUrl } : {}),
+    mainEntityOfPage: { "@type": "WebPage", "@id": pageUrl },
+  };
+
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Navbar />
 
       <main className="flex-grow pt-32 pb-24">

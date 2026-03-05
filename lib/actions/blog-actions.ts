@@ -138,6 +138,15 @@ export async function updateBlog(id: string, formData: FormData) {
       const filePath = path.join(uploadDir, filename);
       await fs.writeFile(filePath, buffer);
 
+      if (currentImage && currentImage.startsWith("/uploads/")) {
+        const oldImagePath = path.join(process.cwd(), "public", currentImage);
+        try {
+          await fs.unlink(oldImagePath);
+        } catch (err) {
+          console.error("Error deleting old image file:", err);
+        }
+      }
+
       // The URL that will be saved in DB
       imageUrl = `/uploads/blogs/${filename}`;
     }
@@ -171,6 +180,16 @@ export async function updateBlog(id: string, formData: FormData) {
 export async function deleteBlog(id: string) {
   await dbConnect();
   try {
+    const blog = await Blog.findById(id);
+    if (blog && blog.image && blog.image.startsWith("/uploads/")) {
+      const imagePath = path.join(process.cwd(), "public", blog.image);
+      try {
+        await fs.unlink(imagePath);
+      } catch (err) {
+        console.error("Error deleting image file:", err);
+      }
+    }
+
     await Blog.findByIdAndDelete(id);
     revalidatePath("/");
     revalidatePath("/blogs");

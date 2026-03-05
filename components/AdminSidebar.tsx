@@ -5,9 +5,7 @@ import {
   BookOpen,
   LayoutDashboard,
   MessageSquare,
-  Settings,
   FolderKanban,
-  ExternalLink,
 } from "lucide-react";
 
 import {
@@ -58,15 +56,27 @@ export function AdminSidebar({
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <div className="flex items-center gap-2 px-2 py-2">
-          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-            <LayoutDashboard className="h-4 w-4" />
+        {/* Expanded state */}
+        <div className="group-data-[collapsible=icon]:hidden flex items-center gap-2 px-2 py-2">
+          <div className="flex h-full w-full items-center justify-start rounded-full bg-primary text-primary-foreground p-1 gap-2">
+            <div className="w-10 h-10 rounded-full bg-black text-white flex justify-center items-center shrink-0">
+              <span>SM</span>
+            </div>
+            <div className="flex flex-col gap-0.5 leading-none overflow-hidden pr-2">
+              <span className="font-extrabold truncate text-sm">
+                Sayem Molla
+              </span>
+              <span className="text-xs text-primary-foreground/70 truncate">
+                Admin Portal
+              </span>
+            </div>
           </div>
-          <div className="flex flex-col gap-0.5 leading-none group-data-[collapsible=icon]:hidden overflow-hidden">
-            <span className="font-semibold truncate">Portfolio Admin</span>
-            <span className="text-xs text-muted-foreground truncate">
-              v1.0.0
-            </span>
+        </div>
+
+        {/* Collapsed (icon-only) state */}
+        <div className="hidden group-data-[collapsible=icon]:flex justify-center items-center py-3">
+          <div className="w-9 h-9 rounded-full bg-primary text-primary-foreground flex justify-center items-center">
+            <span>SM</span>
           </div>
         </div>
       </SidebarHeader>

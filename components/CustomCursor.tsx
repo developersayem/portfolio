@@ -2,11 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 const CustomCursor = () => {
   const [pos, setPos] = useState({ x: 0, y: 0 });
   const [hovered, setHovered] = useState(false);
   const [visible, setVisible] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const move = (e: MouseEvent) => {
@@ -20,7 +22,9 @@ const CustomCursor = () => {
     window.addEventListener("mousemove", move);
     window.addEventListener("mouseleave", leave);
 
-    const interactives = document.querySelectorAll("a, button, [role='button'], input, textarea");
+    const interactives = document.querySelectorAll(
+      "a, button, [role='button'], input, textarea",
+    );
     interactives.forEach((el) => {
       el.addEventListener("mouseenter", over);
       el.addEventListener("mouseleave", out);
@@ -36,6 +40,7 @@ const CustomCursor = () => {
     };
   }, []);
 
+  if (pathname.startsWith("/admin")) return null;
   if (!visible) return null;
 
   return (

@@ -51,7 +51,12 @@ export function DeleteBlogButton({ id }: { id: string }) {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button variant="destructive" size="icon" disabled={isDeleting}>
+        <Button
+          variant="destructive"
+          className="rounded-full"
+          size="icon"
+          disabled={isDeleting}
+        >
           <Trash2 className="h-4 w-4" />
         </Button>
       </AlertDialogTrigger>

@@ -4,6 +4,7 @@ import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { ArrowUpRight, Calendar } from "lucide-react";
 import { StarDecor, DotGrid, RingDecor } from "./ParallaxLayer";
+import Link from "next/link";
 
 interface Post {
   _id: string;
@@ -60,12 +61,12 @@ const BlogSection = ({ posts }: { posts: Post[] }) => {
               Latest <span className="text-gradient">Articles</span>
             </h2>
           </div>
-          <a
-            href="#"
+          <Link
+            href="/blogs"
             className="hidden md:inline-flex items-center gap-2 text-primary text-sm font-semibold hover:underline"
           >
             View All <ArrowUpRight size={16} />
-          </a>
+          </Link>
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-8">
