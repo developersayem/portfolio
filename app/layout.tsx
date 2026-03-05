@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Providers } from "./providers";
+import CustomCursor from "@/components/CustomCursor";
 
 export const metadata: Metadata = {
   title: "Sayem Molla | Full Stack Engineer",
@@ -16,7 +17,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="overflow-x-hidden">
-        <Providers>{children}</Providers>
+        <Providers>
+          <CustomCursor />
+          {children}
+        </Providers>
       </body>
     </html>
   );

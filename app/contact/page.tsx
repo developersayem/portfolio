@@ -4,14 +4,12 @@ import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Github, Linkedin, Twitter } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import FooterSection from "@/components/FooterSection";
-import CustomCursor from "@/components/CustomCursor";
 import ContactForm from "@/components/ContactForm";
 import { StarDecor, RingDecor, DotGrid } from "@/components/ParallaxLayer";
 
 const ContactPage = () => {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-      <CustomCursor />
       <Navbar />
 
       <main className="pt-32 pb-24 relative">

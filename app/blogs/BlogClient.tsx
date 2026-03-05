@@ -12,7 +12,6 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-import CustomCursor from "@/components/CustomCursor";
 
 interface BlogPost {
   _id: string; // From Mongo
@@ -43,7 +42,6 @@ const BlogClient = ({ posts }: { posts: BlogPost[] }) => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      <CustomCursor />
       <Navbar />
 
       <main className="flex-grow pt-32 pb-24">

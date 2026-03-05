@@ -1,4 +1,3 @@
-import CustomCursor from "@/components/CustomCursor";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 
@@ -20,7 +19,6 @@ export default async function HomePage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-      <CustomCursor />
       <Navbar />
       <HeroSection />
 
