@@ -10,7 +10,7 @@ interface NavLinkProps extends ComponentProps<typeof Link> {
 }
 
 const NavLink = forwardRef<HTMLAnchorElement, NavLinkProps>(
-  ({ className, activeClassName, ...props }, ref) => {
+  ({ className, ...props }, ref) => {
     return <Link ref={ref} className={cn(className)} {...props} />;
   },
 );

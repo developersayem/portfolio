@@ -1,6 +1,7 @@
 import { getProjectBySlug } from "@/lib/actions/project-actions";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, Github, Globe } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import FooterSection from "@/components/FooterSection";
@@ -120,9 +121,11 @@ export default async function ProjectDetailsPage({
 
             {project.image && (
               <div className="mt-8 rounded-3xl overflow-hidden border border-border/50 bg-muted/20">
-                <img
+                <Image
                   src={project.image}
                   alt={project.title}
+                  width={1200}
+                  height={675}
                   className="w-full h-auto object-cover"
                 />
               </div>

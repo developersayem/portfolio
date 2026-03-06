@@ -1,10 +1,16 @@
 import { getSubscribers } from "@/lib/actions/newsletter-actions";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Mail } from "lucide-react";
 import DeleteSubscriberButton from "@/components/admin/DeleteSubscriberButton";
 
+interface SubscriberType {
+  _id: string;
+  email: string;
+  createdAt: string;
+}
+
 export default async function SubscribersPage() {
-  const subscribers = await getSubscribers();
+  const subscribers = (await getSubscribers()) as SubscriberType[];
 
   return (
     <div className="p-6 space-y-6">
@@ -21,7 +27,7 @@ export default async function SubscribersPage() {
             </CardContent>
           </Card>
         ) : (
-          subscribers.map((subscriber: any) => (
+          subscribers.map((subscriber: SubscriberType) => (
             <div
               key={subscriber._id}
               className="p-5 flex items-center justify-between bg-card border border-border rounded-lg group hover:border-primary/40 transition-colors"

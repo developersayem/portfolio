@@ -91,7 +91,7 @@ const TestimonialSection = () => {
               className="bg-card border border-border rounded-2xl p-8 relative"
             >
               <span className="absolute top-6 right-8 text-5xl font-display font-bold text-primary/10">
-                "
+                &quot;
               </span>
               <div className="flex gap-1 mb-4">
                 {[...Array(t.rating)].map((_, j) => (

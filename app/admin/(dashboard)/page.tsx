@@ -8,8 +8,23 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
+interface MessageType {
+  _id: string;
+  name: string;
+  subject: string;
+  createdAt: string;
+}
+
 export default async function AdminDashboard() {
-  const { stats, latestMessages } = await getDashboardStats();
+  const { stats, latestMessages } = (await getDashboardStats()) as {
+    stats: {
+      blogs: number;
+      projects: number;
+      messages: number;
+      subscribers: number;
+    };
+    latestMessages: MessageType[];
+  };
 
   const statCards = [
     {
@@ -92,7 +107,7 @@ export default async function AdminDashboard() {
                 No messages yet.
               </p>
             ) : (
-              latestMessages.map((msg: any) => (
+              latestMessages.map((msg: MessageType) => (
                 <div
                   key={msg._id}
                   className="flex items-center gap-4 p-3 rounded-xl hover:bg-muted/50 transition-colors border border-transparent hover:border-border/50"

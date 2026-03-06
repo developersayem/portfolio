@@ -1,12 +1,20 @@
-import { getBlogs, deleteBlog } from "@/lib/actions/blog-actions";
+import { getBlogs } from "@/lib/actions/blog-actions";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Plus, Pencil } from "lucide-react";
 import Link from "next/link";
 import { DeleteBlogButton } from "@/components/admin/DeleteBlogButton";
 
+interface BlogType {
+  _id: string;
+  title: string;
+  slug: string;
+  category: string;
+  date: string;
+}
+
 export default async function AdminBlogsPage() {
-  const blogs = await getBlogs();
+  const blogs = (await getBlogs()) as BlogType[];
 
   return (
     <div className="space-y-6">
@@ -30,7 +38,7 @@ export default async function AdminBlogsPage() {
             </CardContent>
           </Card>
         ) : (
-          blogs.map((blog: any) => (
+          blogs.map((blog: BlogType) => (
             <div
               key={blog._id}
               className="p-5 flex items-center justify-between bg-card rounded-lg"

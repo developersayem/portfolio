@@ -3,8 +3,18 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 
+interface ContactType {
+  _id: string;
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+  isRead: boolean;
+  createdAt: string;
+}
+
 export default async function AdminContactsPage() {
-  const contacts = await getContacts();
+  const contacts = (await getContacts()) as ContactType[];
 
   return (
     <div className="space-y-6">
@@ -18,7 +28,7 @@ export default async function AdminContactsPage() {
             </CardContent>
           </Card>
         ) : (
-          contacts.map((contact: any) => (
+          contacts.map((contact: ContactType) => (
             <Card
               key={contact._id}
               className={contact.isRead ? "opacity-70" : "border-primary/20"}

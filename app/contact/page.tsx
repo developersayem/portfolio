@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Github, Linkedin, Facebook } from "lucide-react";
+import { Mail, Phone, Github, Linkedin, Facebook } from "lucide-react";
 
 const XIcon = ({ size = 20 }: { size?: number }) => (
   <svg
@@ -65,14 +65,14 @@ const ContactPage = () => {
                     Get in Touch
                   </span>
                   <h1 className="font-display text-5xl md:text-7xl font-extrabold mb-8 leading-tight">
-                    Let's Build Your
+                    Let&apos;s Build Your
                     <br />
                     <span className="text-gradient">Vision</span> Together
                   </h1>
                   <p className="text-muted-foreground text-lg mb-12 leading-relaxed max-w-md">
                     Whether you have a specific project in mind or just want to
-                    explore the possibilities, I'm here to help you navigate the
-                    digital landscape.
+                    explore the possibilities, I&apos;m here to help you
+                    navigate the digital landscape.
                   </p>
                 </motion.div>
 

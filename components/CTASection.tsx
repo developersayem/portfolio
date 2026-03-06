@@ -51,13 +51,13 @@ const CTASection = () => {
           className="text-center max-w-3xl mx-auto"
         >
           <h2 className="font-display text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
-            Let's Build Something
+            Let&apos;s Build Something
             <br />
             <span className="text-gradient">Extraordinary</span> Together
           </h2>
           <p className="text-muted-foreground text-lg mb-10 max-w-xl mx-auto">
-            Have a project in mind? Let's discuss how we can bring your vision
-            to life with cutting-edge technology and thoughtful design.
+            Have a project in mind? Let&apos;s discuss how we can bring your
+            vision to life with cutting-edge technology and thoughtful design.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link

@@ -3,8 +3,7 @@
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Link from "next/link";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import Image from "next/image";
 import { StarDecor, DotGrid, RingDecor } from "./ParallaxLayer";
 
 interface Project {
@@ -109,10 +108,11 @@ const ProjectsSection = ({ projects }: { projects: Project[] }) => {
               {/* Card Thumbnail */}
               {p.image && (
                 <div className="w-full h-56 overflow-hidden bg-muted/20 border-b border-border/50 relative z-0">
-                  <img
+                  <Image
                     src={p.image}
                     alt={p.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
               )}

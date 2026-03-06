@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowUpRight, Calendar, Search } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import FooterSection from "@/components/FooterSection";
 import { Input } from "@/components/ui/input";
@@ -129,10 +130,11 @@ const BlogClient = ({ posts }: { posts: BlogPost[] }) => {
                   >
                     {post.image ? (
                       <div className="h-48 relative overflow-hidden bg-muted">
-                        <img
+                        <Image
                           src={post.image}
                           alt={post.title}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                          fill
+                          className="object-cover transition-transform duration-700 group-hover:scale-105"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                       </div>

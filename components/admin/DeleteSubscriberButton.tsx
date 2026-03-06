@@ -21,7 +21,7 @@ export default function DeleteSubscriberButton({ id }: { id: string }) {
       } else {
         alert(result.error || "Failed to delete subscriber");
       }
-    } catch (error) {
+    } catch {
       alert("Something went wrong. Please try again.");
     } finally {
       setLoading(false);

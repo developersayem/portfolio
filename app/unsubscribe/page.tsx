@@ -38,7 +38,7 @@ export default function UnsubscribePage() {
           result.error || "Something went wrong. Please check your email.",
         );
       }
-    } catch (error) {
+    } catch {
       setStatus("error");
       setMessage("Failed to unsubscribe. Please try again later.");
     }
@@ -63,8 +63,8 @@ export default function UnsubscribePage() {
 
         <h1 className="text-3xl font-bold font-display mb-2">Unsubscribe</h1>
         <p className="text-muted-foreground mb-8 text-sm">
-          We're sorry to see you go. Enter your email below to unsubscribe from
-          our newsletter.
+          We&apos;re sorry to see you go. Enter your email below to unsubscribe
+          from our newsletter.
         </p>
 
         {status === "success" ? (

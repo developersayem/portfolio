@@ -2,6 +2,7 @@
 
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import Image from "next/image";
 import { StarDecor, DotGrid, RingDecor } from "./ParallaxLayer";
 import { ExperienceBadge } from "./experienceBadge";
 const portraitImg = "/sayem-portrait.jpg";
@@ -51,11 +52,12 @@ const AboutSection = () => {
             transition={{ duration: 0.7 }}
             className="relative"
           >
-            <div className="rounded-3xl overflow-hidden border border-border">
-              <img
+            <div className="rounded-3xl overflow-hidden border border-border relative h-[500px]">
+              <Image
                 src={portraitImg}
                 alt="Sayem Molla"
-                className="w-full h-[500px] object-cover"
+                fill
+                className="object-cover"
               />
             </div>
             <div className="absolute -bottom-6 -right-6 bg-card border border-border rounded-full p-4 glow-primary flex flex-col items-center">

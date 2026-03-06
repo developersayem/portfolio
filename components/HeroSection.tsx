@@ -24,7 +24,6 @@ const HeroSection = () => {
     offset: ["start start", "end start"],
   });
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const imgY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
   return (
@@ -77,7 +76,7 @@ const HeroSection = () => {
             transition={{ duration: 0.7, delay: 0.3 }}
             className="font-display text-5xl md:text-7xl lg:text-8xl font-extrabold leading-[1] mb-6 tracking-tight"
           >
-            Hi, I'm <span className="text-gradient">Sayem</span>
+            Hi, I&apos;m <span className="text-gradient">Sayem</span>
             <br />
             <span className="text-foreground/60">Full Stack Developer</span>
           </motion.h1>

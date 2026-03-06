@@ -22,7 +22,6 @@ import {
   SiZod,
   SiFirebase,
   SiDrizzle,
-  SiReactquery,
   SiShadcnui,
   SiFigma,
 } from "react-icons/si";

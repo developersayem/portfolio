@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Send, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -29,7 +29,7 @@ const ContactForm = () => {
       } else {
         setError(result.error || "Something went wrong.");
       }
-    } catch (err) {
+    } catch {
       setError("Something went wrong. Please try again later.");
     } finally {
       setIsSubmitting(false);
@@ -48,7 +48,8 @@ const ContactForm = () => {
         </div>
         <h3 className="font-display text-2xl font-bold mb-3">Message Sent!</h3>
         <p className="text-muted-foreground mb-8">
-          Thank you for reaching out. I'll get back to you as soon as possible.
+          Thank you for reaching out. I&apos;ll get back to you as soon as
+          possible.
         </p>
         <Button
           onClick={() => setIsSuccess(false)}

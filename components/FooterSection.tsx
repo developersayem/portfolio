@@ -62,7 +62,7 @@ const FooterSection = () => {
         setMessage(result.error || "Something went wrong");
         setTimeout(() => setStatus("idle"), 5000);
       }
-    } catch (err) {
+    } catch {
       setStatus("error");
       setMessage("Failed to subscribe. Please try again.");
       setTimeout(() => setStatus("idle"), 5000);

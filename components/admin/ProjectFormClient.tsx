@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -56,7 +57,7 @@ export function ProjectFormClient({
           variant: "destructive",
         });
       }
-    } catch (error) {
+    } catch {
       toast({
         title: "Error",
         description: "An unexpected error occurred. Please try again.",
@@ -149,10 +150,11 @@ export function ProjectFormClient({
                 )}
                 {initialData?.image && (
                   <div className="mb-2 rounded overflow-hidden border border-border w-24 h-16 relative">
-                    <img
+                    <Image
                       src={initialData.image}
                       alt="Current image"
-                      className="w-full h-full object-cover"
+                      fill
+                      className="object-cover"
                     />
                   </div>
                 )}

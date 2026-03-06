@@ -1,12 +1,18 @@
 import { getProjects } from "@/lib/actions/project-actions";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Plus, Pencil } from "lucide-react";
 import Link from "next/link";
 import { DeleteProjectButton } from "@/components/admin/DeleteProjectButton";
 
+interface ProjectType {
+  _id: string;
+  title: string;
+  techStack: string[];
+}
+
 export default async function AdminProjectsPage() {
-  const projects = await getProjects();
+  const projects = (await getProjects()) as ProjectType[];
 
   return (
     <div className="space-y-6">
@@ -30,7 +36,7 @@ export default async function AdminProjectsPage() {
             </CardContent>
           </Card>
         ) : (
-          projects.map((project: any) => (
+          projects.map((project: ProjectType) => (
             <div
               key={project._id}
               className="p-5 flex items-center justify-between bg-card rounded-lg"
