@@ -212,38 +212,37 @@ const ProjectClient = ({ projects }: { projects: Project[] }) => {
                         ))}
                       </div>
 
-                      {/* Footer Actions Markup (Static UI) */}
-                      <div className="mt-auto pt-6 border-t border-border/50 flex items-center justify-between">
+                      {/* Footer Actions (Interactive Layer) */}
+                      <div className="mt-auto pt-6 border-t border-border/50 flex items-center justify-between relative z-30 pointer-events-auto">
                         <span className="text-sm font-bold text-foreground group-hover:text-primary transition-colors flex items-center gap-2">
                           Explore <ArrowUpRight size={14} />
                         </span>
-                      </div>
-                    </div>
 
-                    {/* Real Action Buttons (Interactive Layer) */}
-                    <div className="absolute bottom-11 right-8 z-30 flex items-center gap-4">
-                      {project.githubUrl && (
-                        <a
-                          href={project.githubUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-muted-foreground hover:text-primary transition-colors p-2"
-                          aria-label="GitHub Repository"
-                        >
-                          <Github size={18} />
-                        </a>
-                      )}
-                      {project.liveUrl && (
-                        <a
-                          href={project.liveUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-muted-foreground hover:text-primary transition-colors p-2"
-                          aria-label="Live Demo"
-                        >
-                          <Globe size={18} />
-                        </a>
-                      )}
+                        <div className="flex items-center gap-4">
+                          {project.githubUrl && (
+                            <a
+                              href={project.githubUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-muted-foreground hover:text-primary transition-colors p-1"
+                              aria-label="GitHub Repository"
+                            >
+                              <Github size={18} />
+                            </a>
+                          )}
+                          {project.liveUrl && (
+                            <a
+                              href={project.liveUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-muted-foreground hover:text-primary transition-colors p-1"
+                              aria-label="Live Demo"
+                            >
+                              <Globe size={18} />
+                            </a>
+                          )}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </motion.div>
