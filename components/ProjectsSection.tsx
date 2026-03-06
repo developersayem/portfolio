@@ -68,7 +68,7 @@ const ProjectsSection = ({ projects }: { projects: Project[] }) => {
           </div>
           <Link
             href="/projects"
-            className="hidden md:inline-flex items-center gap-2 text-primary text-sm font-semibold hover:underline"
+            className="inline-flex items-center gap-2 text-primary text-sm font-semibold hover:underline"
           >
             View All{" "}
             <svg

@@ -179,7 +179,7 @@ const FooterSection = () => {
           </div>
         </div>
 
-        <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="border-t border-border pt-8 pb-5 md:pb-0 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-muted-foreground">
             © {new Date().getFullYear()}{" "}
             <span className="text-primary">Sayem Molla</span>. All Rights
@@ -221,7 +221,7 @@ const FooterSection = () => {
       </div>
 
       {/* Large Bottom Marquee */}
-      <div className="mt-0 border-t border-border/50 overflow-hidden relative group -bottom-10">
+      <div className="mt-0 border-t border-border/50 overflow-hidden relative group md:-bottom-10">
         <div
           className="animate-marquee flex flex-nowrap w-max will-change-transform"
           style={{ animationDuration: "50s" }}
