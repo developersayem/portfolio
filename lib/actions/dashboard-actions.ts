@@ -7,9 +7,9 @@ import Contact from "@/models/Contact";
 import Subscription from "@/models/Subscription";
 
 export async function getDashboardStats() {
-  await dbConnect();
-
   try {
+    await dbConnect();
+
     const [blogCount, projectCount, messageCount, subscriberCount] =
       await Promise.all([
         Blog.countDocuments({}),

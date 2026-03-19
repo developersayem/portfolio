@@ -4,8 +4,6 @@ import dbConnect from "@/lib/db";
 import Subscription from "@/models/Subscription";
 
 export async function subscribeToNewsletter(formData: FormData) {
-  await dbConnect();
-
   const email = formData.get("email") as string;
 
   if (!email) {
@@ -19,6 +17,7 @@ export async function subscribeToNewsletter(formData: FormData) {
   }
 
   try {
+    await dbConnect();
     const existingSubscription = await Subscription.findOne({ email });
 
     if (existingSubscription) {
@@ -36,8 +35,8 @@ export async function subscribeToNewsletter(formData: FormData) {
 }
 
 export async function getSubscribers() {
-  await dbConnect();
   try {
+    await dbConnect();
     const subscribers = await Subscription.find({}).sort({ createdAt: -1 });
     return JSON.parse(JSON.stringify(subscribers));
   } catch (error) {
@@ -47,8 +46,8 @@ export async function getSubscribers() {
 }
 
 export async function deleteSubscription(id: string) {
-  await dbConnect();
   try {
+    await dbConnect();
     await Subscription.findByIdAndDelete(id);
     return { success: true };
   } catch (error) {
@@ -58,8 +57,8 @@ export async function deleteSubscription(id: string) {
 }
 
 export async function unsubscribe(email: string) {
-  await dbConnect();
   try {
+    await dbConnect();
     const result = await Subscription.findOneAndDelete({ email });
     if (!result) {
       return { success: false, error: "Email not found" };

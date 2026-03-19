@@ -1,73 +1,95 @@
-# Welcome to your Lovable project
+# Modern Portfolio
 
-## Project info
+A professional, high-performance portfolio website built with Next.js, TypeScript, and MongoDB. This project features a robust admin dashboard, blog management, project showcase, and a newsletter system.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## 🚀 Features
 
-## How can I edit this code?
+-   **Dynamic Portfolio**: Showcase your projects with detailed descriptions, tech stacks, and live links.
+-   **Blog Engine**: Full-featured blog with category filtering and dynamic routing.
+-   **Admin Dashboard**: Secure management interface for projects, blogs, contact messages, and newsletter subscribers.
+-   **Interactive Contact Form**: Real-time message notifications via email.
+-   **Newsletter System**: Subscription management with unsubscribe functionality.
+-   **Responsive Design**: Modern, premium UI built with Tailwind CSS and shadcn/ui.
+-   **Fully Containerized**: Ready for production deployment using Docker and Docker Compose.
 
-There are several ways of editing your application.
+## 🛠 Tech Stack
 
-**Use Lovable**
+-   **Framework**: Next.js (App Router)
+-   **Language**: TypeScript
+-   **Database**: MongoDB (Mongoose)
+-   **Styling**: Tailwind CSS, shadcn/ui
+-   **Forms & Validation**: React Hook Form, Zod
+-   **Email**: Nodemailer
+-   **Containerization**: Docker, Docker Compose
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## 🏁 Getting Started
 
-Changes made via Lovable will be committed automatically to this repo.
+### Local Development
 
-**Use your preferred IDE**
+1.  **Clone the repository**:
+    ```bash
+    git clone <your-repository-url>
+    cd portfolio
+    ```
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+2.  **Install dependencies**:
+    ```bash
+    npm install
+    ```
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+3.  **Configure environment variables**:
+    Create a `.env.local` file in the root directory and add the following:
+    ```env
+    MONGODB_URI=mongodb://localhost:27017/portfolio
+    ADMIN_JWT_SECRET=your-secret-key
+    NEXT_PUBLIC_SITE_URL=http://localhost:3000
 
-Follow these steps:
+    # Email (Optional)
+    SMTP_HOST=smtp.gmail.com
+    SMTP_PORT=587
+    SMTP_USER=your-email@gmail.com
+    SMTP_PASS=your-app-password
+    NOTIFY_EMAIL=your-email@gmail.com
+    ```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+4.  **Run the development server**:
+    ```bash
+    npm run dev
+    ```
+    Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+---
 
-# Step 3: Install the necessary dependencies.
-npm i
+## 🐳 Docker Setup (Recommended)
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+Run the entire stack (App + Database) effortlessly.
 
-**Edit a file directly in GitHub**
+### Prerequisites
+-   Docker and Docker Compose installed.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Quick Start
+1.  **Launch the containers**:
+    ```bash
+    docker-compose up -d --build
+    ```
+2.  **Access the application**:
+    -   **Web App**: `http://localhost:3000`
+    -   **MongoDB**: `mongodb://localhost:27017/portfolio`
 
-**Use GitHub Codespaces**
+### Management Commands
+-   **View Logs**: `docker-compose logs -f app`
+-   **Stop Services**: `docker-compose down`
+-   **Rebuild**: `docker-compose up -d --build` (use after code changes)
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 📁 Project Structure
 
-## What technologies are used for this project?
+-   `app/`: Next.js pages and layouts (App Router).
+-   `components/`: Reusable UI components.
+-   `lib/`: Utility functions, database connection, and server actions.
+-   `models/`: Mongoose schemas for MongoDB.
+-   `public/`: Static assets and uploads.
+-   `styles/`: Global styles and Tailwind configuration.
 
-This project is built with:
+## ⚖️ License
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+This project is licensed under the MIT License - see the LICENSE file for details.

@@ -7,8 +7,8 @@ import dbConnect from "@/lib/db";
 import Project from "@/models/Project";
 
 export async function getProjects() {
-  await dbConnect();
   try {
+    await dbConnect();
     const projects = await Project.find({}).sort({ order: 1 });
     return JSON.parse(JSON.stringify(projects));
   } catch (error) {
@@ -18,8 +18,8 @@ export async function getProjects() {
 }
 
 export async function getProjectBySlug(slug: string) {
-  await dbConnect();
   try {
+    await dbConnect();
     const project = await Project.findOne({ slug });
     if (!project) return null;
     return JSON.parse(JSON.stringify(project));
@@ -30,8 +30,6 @@ export async function getProjectBySlug(slug: string) {
 }
 
 export async function createProject(formData: FormData) {
-  await dbConnect();
-
   const title = formData.get("title") as string;
   const shortDescription = formData.get("shortDescription") as string;
   const description = formData.get("description") as string;
@@ -48,6 +46,7 @@ export async function createProject(formData: FormData) {
   const techStack = techStackString.split(",").map((s) => s.trim());
 
   try {
+    await dbConnect();
     let imageUrl = "";
 
     if (imageFile && imageFile.name) {
@@ -92,8 +91,8 @@ export async function createProject(formData: FormData) {
 }
 
 export async function getProjectById(id: string) {
-  await dbConnect();
   try {
+    await dbConnect();
     const project = await Project.findById(id);
     if (!project) return null;
     return JSON.parse(JSON.stringify(project));
@@ -104,8 +103,6 @@ export async function getProjectById(id: string) {
 }
 
 export async function updateProject(id: string, formData: FormData) {
-  await dbConnect();
-
   const title = formData.get("title") as string;
   const shortDescription = formData.get("shortDescription") as string;
   const description = formData.get("description") as string;
@@ -123,6 +120,7 @@ export async function updateProject(id: string, formData: FormData) {
   const techStack = techStackString.split(",").map((s) => s.trim());
 
   try {
+    await dbConnect();
     let imageUrl = currentImage || "";
 
     if (imageFile && imageFile.name && imageFile.size > 0) {
@@ -182,8 +180,8 @@ export async function updateProject(id: string, formData: FormData) {
 }
 
 export async function deleteProject(id: string) {
-  await dbConnect();
   try {
+    await dbConnect();
     const project = await Project.findById(id);
     if (project && project.image && project.image.startsWith("/uploads/")) {
       const imagePath = path.join(process.cwd(), "public", project.image);

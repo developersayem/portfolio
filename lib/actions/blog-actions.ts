@@ -7,8 +7,8 @@ import dbConnect from "@/lib/db";
 import Blog from "@/models/Blog";
 
 export async function getBlogs() {
-  await dbConnect();
   try {
+    await dbConnect();
     const blogs = await Blog.find({}).sort({ createdAt: -1 });
     return JSON.parse(JSON.stringify(blogs));
   } catch (error) {

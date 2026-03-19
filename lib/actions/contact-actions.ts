@@ -6,8 +6,6 @@ import Contact from "@/models/Contact";
 import { sendMail } from "@/lib/mail";
 
 export async function submitContactForm(formData: FormData) {
-  await dbConnect();
-
   const name = formData.get("name") as string;
   const email = formData.get("email") as string;
   const phone = formData.get("phone") as string;
@@ -15,6 +13,7 @@ export async function submitContactForm(formData: FormData) {
   const message = formData.get("message") as string;
 
   try {
+    await dbConnect();
     const newContact = new Contact({
       name,
       email,
@@ -57,8 +56,8 @@ export async function submitContactForm(formData: FormData) {
 }
 
 export async function getContacts() {
-  await dbConnect();
   try {
+    await dbConnect();
     const contacts = await Contact.find({}).sort({ createdAt: -1 });
     return JSON.parse(JSON.stringify(contacts));
   } catch (error) {
@@ -68,8 +67,8 @@ export async function getContacts() {
 }
 
 export async function markContactAsRead(id: string) {
-  await dbConnect();
   try {
+    await dbConnect();
     await Contact.findByIdAndUpdate(id, { isRead: true });
     revalidatePath("/admin/contacts");
     return { success: true };
