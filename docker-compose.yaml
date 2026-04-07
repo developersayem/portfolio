@@ -16,18 +16,20 @@ services:
     restart: always
 
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: developersayem/portfolio:latest
     container_name: portfolio-app
     ports:
       - "3000:3000"
     environment:
       - MONGODB_URI=mongodb://mongodb:27017/portfolio
       - NODE_ENV=production
-      - NEXT_PUBLIC_SITE_URL=http://localhost:3000
-      # Add other environment variables as needed
-      - ADMIN_JWT_SECRET=production-secret-change-me
+      - NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL}
+      - ADMIN_JWT_SECRET=${ADMIN_JWT_SECRET}
+      - NOTIFY_EMAIL=${NOTIFY_EMAIL}
+      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_USER=${SMTP_USER}
+      - SMTP_PASS=${SMTP_PASS}
+      - SMTP_PORT=${SMTP_PORT}
     depends_on:
       mongodb:
         condition: service_healthy
