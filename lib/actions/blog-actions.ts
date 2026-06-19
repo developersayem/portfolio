@@ -36,6 +36,15 @@ export async function createBlog(formData: FormData) {
   const content = formData.get("content") as string;
   const category = formData.get("category") as string;
   const excerpt = formData.get("excerpt") as string;
+  const seoTitle = (formData.get("seoTitle") as string) || "";
+  const seoDescription = (formData.get("seoDescription") as string) || "";
+  const keywordsInput = (formData.get("keywords") as string) || "";
+  const keywords = keywordsInput
+    ? keywordsInput
+        .split(",")
+        .map((k) => k.trim())
+        .filter((k) => k.length > 0)
+    : [];
   const imageFile = formData.get("image") as File;
 
   const slug = title
@@ -73,6 +82,9 @@ export async function createBlog(formData: FormData) {
       category,
       excerpt,
       image: imageUrl,
+      seoTitle,
+      seoDescription,
+      keywords,
       date: new Date().toLocaleDateString("en-US", {
         month: "short",
         day: "numeric",
@@ -113,6 +125,15 @@ export async function updateBlog(id: string, formData: FormData) {
   const excerpt = formData.get("excerpt") as string;
   const imageFile = formData.get("image") as File;
   const currentImage = formData.get("currentImage") as string;
+  const seoTitle = (formData.get("seoTitle") as string) || "";
+  const seoDescription = (formData.get("seoDescription") as string) || "";
+  const keywordsInput = (formData.get("keywords") as string) || "";
+  const keywords = keywordsInput
+    ? keywordsInput
+        .split(",")
+        .map((k) => k.trim())
+        .filter((k) => k.length > 0)
+    : [];
 
   const slug = title
     .toLowerCase()
@@ -160,6 +181,9 @@ export async function updateBlog(id: string, formData: FormData) {
         category,
         excerpt,
         image: imageUrl,
+        seoTitle,
+        seoDescription,
+        keywords,
       },
       { new: true },
     );

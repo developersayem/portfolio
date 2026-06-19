@@ -18,6 +18,9 @@ interface BlogFormClientProps {
     image: string;
     excerpt: string;
     content: string;
+    seoTitle?: string;
+    seoDescription?: string;
+    keywords?: string[];
   };
   formTitle: string;
   submitText: string;
@@ -155,6 +158,34 @@ export function BlogFormClient({
                 placeholder="Short description for the listing"
                 defaultValue={initialData?.excerpt}
                 required
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="seoTitle">SEO Meta Title</Label>
+              <Input
+                id="seoTitle"
+                name="seoTitle"
+                placeholder="Optional SEO title"
+                defaultValue={initialData?.seoTitle || ""}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="seoDescription">SEO Meta Description</Label>
+              <Textarea
+                id="seoDescription"
+                name="seoDescription"
+                className="h-24 resize-none"
+                placeholder="Optional SEO description"
+                defaultValue={initialData?.seoDescription || ""}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="keywords">SEO Keywords</Label>
+              <Input
+                id="keywords"
+                name="keywords"
+                placeholder="Enter keywords separated by commas"
+                defaultValue={initialData?.keywords?.join(", ") || ""}
               />
             </div>
           </div>

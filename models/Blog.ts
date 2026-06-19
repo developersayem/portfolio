@@ -9,6 +9,9 @@ export interface IBlog extends Document {
   image?: string;
   excerpt: string;
   published: boolean;
+  seoTitle?: string;
+  seoDescription?: string;
+  keywords?: string[];
 }
 
 const BlogSchema: Schema = new Schema(
@@ -21,6 +24,9 @@ const BlogSchema: Schema = new Schema(
     image: { type: String },
     excerpt: { type: String, required: true },
     published: { type: Boolean, default: false },
+    seoTitle: { type: String },
+    seoDescription: { type: String },
+    keywords: { type: [String], default: [] },
   },
   { timestamps: true },
 );

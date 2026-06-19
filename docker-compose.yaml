@@ -16,7 +16,7 @@ services:
     restart: always
 
   app:
-    image: developersayem/portfolio:latest
+    image: devsayemmolla/portfolio:latest
     container_name: portfolio-app
     ports:
       - "3000:3000"
